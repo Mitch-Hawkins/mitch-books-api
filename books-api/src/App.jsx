@@ -3,18 +3,23 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import SearchBar from "./components/SearchBar/SearchBar";
 import BookCardList from "./containers/BookCardList/BookCardList";
+import ModalContextProvider from "./context/ModalContextProvider";
 
 function App() {
   const [bookData, setBookData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("mockingbird");
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchBookData = async () => {
+    // const fetchedData = await fetch(
+    //   `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=2`
+    // );
     const fetchedData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=2`
+      `https://swapi.dev/api/starships/?search=${searchTerm}`
     );
     const returnedData = await fetchedData.json();
-    return returnedData.items[0].results;
+    console.log(returnedData.results);
+    return returnedData.results;
   };
 
   useEffect(() => {
@@ -32,10 +37,14 @@ function App() {
   return (
     <>
       {/* Grid Background */}
-      <Header />
-      <SearchBar setSearchTerm={setSearchTerm} />
-      {loading && <p>Loading...</p>}
-      {!loading && <BookCardList bookData={bookData} searchTerm={searchTerm} />}
+      <ModalContextProvider>
+        <Header />
+        <SearchBar setSearchTerm={setSearchTerm} />
+        {loading && <p>Loading...</p>}
+        {!loading && (
+          <BookCardList bookData={bookData} searchTerm={searchTerm} />
+        )}
+      </ModalContextProvider>
     </>
   );
 }
