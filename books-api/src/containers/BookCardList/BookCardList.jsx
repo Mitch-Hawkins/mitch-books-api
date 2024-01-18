@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
 
 const BookCardList = ({ bookData }) => {
-  const [modalData, setModalData] = useState(null);
+  const { modalData, setModalData } = useContext(ModalContext);
 
   useEffect(() => {
     console.log(modalData);
@@ -14,12 +14,13 @@ const BookCardList = ({ bookData }) => {
       {bookData &&
         bookData.map((book, i) => {
           return (
-            <div key={book.length}>
+            <div key={book.etag}>
               <BookCard
-                key={book.name}
-                title={book.name}
-                author={book.manufacturer}
-                pages={book.passengers}
+                key={book.id}
+                title={book.volumeInfo.title}
+                author={book.volumeInfo.authors}
+                pages={book.volumeInfo.pageCount}
+                description={book.volumeInfo.description}
                 id={i}
                 bookData={bookData}
                 setModalData={setModalData}

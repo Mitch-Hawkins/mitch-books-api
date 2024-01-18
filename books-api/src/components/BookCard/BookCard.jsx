@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
 
-const BookCard = ({ title, author, pages, id, bookData, setModalData }) => {
-  const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
+const BookCard = ({ title, author, pages, description, id, bookData }) => {
+  const { isModalOpen, setIsModalOpen, modalData, setModalData } =
+    useContext(ModalContext);
 
   const handleClick = () => {
     setIsModalOpen(true);
@@ -15,7 +16,6 @@ const BookCard = ({ title, author, pages, id, bookData, setModalData }) => {
       <img></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
-      <p>Passengers: {pages}</p>
       <button onClick={handleClick}>{`${isModalOpen}`}</button>
     </article>
   );

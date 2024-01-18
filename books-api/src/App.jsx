@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import SearchBar from "./components/SearchBar/SearchBar";
 import BookCardList from "./containers/BookCardList/BookCardList";
 import ModalContextProvider from "./context/ModalContextProvider";
+import BookModal from "./containers/BookModal/BookModal";
 
 function App() {
   const [bookData, setBookData] = useState(null);
@@ -11,18 +12,18 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const fetchBookData = async () => {
-    // const fetchedData = await fetch(
-    //   `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=2`
-    // );
     const fetchedData = await fetch(
-      `https://swapi.dev/api/starships/?search=${searchTerm}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
     const returnedData = await fetchedData.json();
-    console.log(returnedData.results);
-    return returnedData.results;
+    console.log(returnedData.items);
+    return returnedData.items;
   };
 
   useEffect(() => {
+    if (!searchTerm) {
+      return;
+    }
     setLoading(true);
     fetchBookData()
       .then((result) => {
@@ -44,6 +45,7 @@ function App() {
         {!loading && (
           <BookCardList bookData={bookData} searchTerm={searchTerm} />
         )}
+        <BookModal />
       </ModalContextProvider>
     </>
   );
