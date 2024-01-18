@@ -13,10 +13,10 @@ function App() {
 
   const fetchBookData = async () => {
     const fetchedData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&startIndex=700`
     );
     const returnedData = await fetchedData.json();
-    console.log(returnedData.items);
+    console.log(returnedData);
     return returnedData.items;
   };
 
