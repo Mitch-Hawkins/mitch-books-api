@@ -9,10 +9,20 @@ const BookCardList = ({ bookData }) => {
     console.log(modalData);
   }, [modalData]);
 
+  const fixThumbnail = (book, i) => {
+    // console.log(book.volumeInfo.imageLinks, i);
+    if (book.volumeInfo.imageLinks) {
+      return book.volumeInfo.imageLinks.thumbnail;
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div>
       {bookData &&
         bookData.map((book, i) => {
+          const bookImage = fixThumbnail(book, i);
           return (
             <div key={book.etag}>
               <BookCard
@@ -21,6 +31,7 @@ const BookCardList = ({ bookData }) => {
                 author={book.volumeInfo.authors}
                 pages={book.volumeInfo.pageCount}
                 description={book.volumeInfo.description}
+                image={bookImage}
                 id={i}
                 bookData={bookData}
                 setModalData={setModalData}

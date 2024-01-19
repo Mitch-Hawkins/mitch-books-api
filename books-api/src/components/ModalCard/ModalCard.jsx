@@ -3,10 +3,10 @@ import { ModalContext } from "../../context/ModalContextProvider";
 
 const ModalCard = ({
   title,
-  author,
-  pages,
-  description,
-  image = "No Image Provided",
+  author = "Not Provided",
+  pages = "Not Provided",
+  description = "Not Provided",
+  image,
 }) => {
   const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
 
@@ -18,7 +18,7 @@ const ModalCard = ({
 
   return (
     <article>
-      <img></img>
+      <img src={image} alt="No Image Available"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
       <p>Page Count: {pages}</p>

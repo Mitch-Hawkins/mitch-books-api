@@ -1,7 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
 
-const BookCard = ({ title, author, pages, description, id, bookData }) => {
+const BookCard = ({
+  title,
+  author = "Not Provided",
+  pages = "Not Provided",
+  description = "No Description Available",
+  id,
+  image = "",
+  bookData,
+}) => {
   const { isModalOpen, setIsModalOpen, modalData, setModalData } =
     useContext(ModalContext);
 
@@ -13,7 +21,7 @@ const BookCard = ({ title, author, pages, description, id, bookData }) => {
 
   return (
     <article>
-      <img></img>
+      <img src={image} alt="No Image Avaialble"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
       <button onClick={handleClick}>{`${isModalOpen}`}</button>
