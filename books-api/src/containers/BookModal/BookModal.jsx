@@ -19,6 +19,20 @@ const BookModal = () => {
     }
   }, [modalData, isModalOpen]);
 
+  const fixThumbnail = (book) => {
+    if (!modalData) {
+      return " ";
+    }
+    if (book.volumeInfo.imageLinks) {
+      console.log(book.volumeInfo.imageLinks.thumbnail);
+      return book.volumeInfo.imageLinks.thumbnail;
+    } else {
+      return " ";
+    }
+  };
+
+  const bookImage = fixThumbnail(modalData);
+
   return (
     <>
       <dialog ref={modalRef}>
@@ -29,6 +43,7 @@ const BookModal = () => {
             author={modalData.volumeInfo.authors}
             pages={modalData.volumeInfo.pageCount}
             description={modalData.volumeInfo.description}
+            image={bookImage}
           />
         )}
       </dialog>

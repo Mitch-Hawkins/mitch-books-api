@@ -5,18 +5,23 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import BookCardList from "./containers/BookCardList/BookCardList";
 import ModalContextProvider from "./context/ModalContextProvider";
 import BookModal from "./containers/BookModal/BookModal";
+import PageSelector from "./components/PageSelector/PageSelector";
 
 function App() {
   const [bookData, setBookData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(20);
 
   const fetchBookData = async () => {
     const fetchedData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&startIndex=${
+        pageNumber * resultsPerPage - resultsPerPage
+      }&maxResults=${resultsPerPage}`
     );
     const returnedData = await fetchedData.json();
-    console.log(returnedData.items);
+    console.log(returnedData);
     return returnedData.items;
   };
 
@@ -33,6 +38,11 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
+    console.log(pageNumber * resultsPerPage - resultsPerPage);
+  }, [searchTerm, pageNumber]);
+
+  useEffect(() => {
+    setPageNumber(1);
   }, [searchTerm]);
 
   return (
@@ -44,6 +54,14 @@ function App() {
         {loading && <p>Loading...</p>}
         {!loading && (
           <BookCardList bookData={bookData} searchTerm={searchTerm} />
+        )}
+        {!loading && bookData && (
+          <PageSelector
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            bookData={bookData}
+            resultsPerPage={resultsPerPage}
+          />
         )}
         <BookModal />
       </ModalContextProvider>
