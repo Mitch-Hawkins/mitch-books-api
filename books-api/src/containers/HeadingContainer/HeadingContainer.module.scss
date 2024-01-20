@@ -3,10 +3,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   padding-bottom: 20px;
   margin-bottom: 30px;
   width: 100vw;
-  height: 50vh;
+  height: 30vh;
   gap: 40px;
+  background-color: #7f5539;
+}
+
+.containerFull {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 90vh;
+  gap: 40px;
+  background-color: #e6ccb2;
+}
+
+.containerFull h1 {
+  color: #7f5539;
 }

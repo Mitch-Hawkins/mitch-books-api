@@ -25,7 +25,7 @@ const BookCard = ({
       <img src={image} alt="No Image Avaialble"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
-      <button onClick={handleClick}>{`${isModalOpen}`}</button>
+      <button onClick={handleClick}>More Info</button>
     </article>
   );
 };

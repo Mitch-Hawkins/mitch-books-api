@@ -8,6 +8,8 @@ import BookModal from "./containers/BookModal/BookModal";
 import PageSelector from "./components/PageSelector/PageSelector";
 import HeadingContainer from "./containers/HeadingContainer/HeadingContainer";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import FooterContainer from "./containers/FooterContainer/FooterContainer";
 
 function App() {
   const [bookData, setBookData] = useState(null);
@@ -15,6 +17,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(20);
+
+  const [errorStatus, setErrorStatus] = useState(false);
 
   const fetchBookData = async () => {
     const fetchedData = await fetch(
@@ -24,7 +28,14 @@ function App() {
     );
     const returnedData = await fetchedData.json();
     console.log(returnedData);
-    return returnedData.items;
+    if (returnedData.hasOwnProperty("error")) {
+      console.log(returnedData.hasOwnProperty("error"));
+      setErrorStatus(true);
+      return returnedData.error;
+    } else {
+      setErrorStatus(false);
+      return returnedData.items;
+    }
   };
 
   useEffect(() => {
@@ -51,8 +62,11 @@ function App() {
     <>
       {/* Grid Background */}
       <ModalContextProvider>
-        <HeadingContainer setSearchTerm={setSearchTerm} />
-        {bookData && (
+        <HeadingContainer
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+        />
+        {bookData && !errorStatus && (
           <PageSelector
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
@@ -61,10 +75,15 @@ function App() {
           />
         )}
         {loading && <LoadingSpinner />}
-        {!loading && (
-          <BookCardList bookData={bookData} searchTerm={searchTerm} />
+        {!loading && !errorStatus && bookData && (
+          <BookCardList
+            bookData={bookData}
+            searchTerm={searchTerm}
+            errorStatus={errorStatus}
+          />
         )}
-        {!loading && bookData && (
+        {!loading && errorStatus && <ErrorMessage bookData={bookData} />}
+        {!errorStatus && bookData && (
           <PageSelector
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
@@ -72,6 +91,7 @@ function App() {
             resultsPerPage={resultsPerPage}
           />
         )}
+        <FooterContainer />
         <BookModal />
       </ModalContextProvider>
     </>

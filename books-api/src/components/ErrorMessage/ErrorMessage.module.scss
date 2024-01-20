@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  //   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.header {
+  color: red;
+}
+
+.paragraph {
+  color: red;
+}
+
+.span {
+  color: black;
+}

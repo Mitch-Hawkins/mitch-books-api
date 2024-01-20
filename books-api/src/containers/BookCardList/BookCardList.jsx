@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
 import styles from "./BookCardList.module.scss";
 
-const BookCardList = ({ bookData }) => {
+const BookCardList = ({ bookData, errorStatus }) => {
   const { modalData, setModalData } = useContext(ModalContext);
 
   useEffect(() => {
@@ -11,7 +11,6 @@ const BookCardList = ({ bookData }) => {
   }, [modalData]);
 
   const fixThumbnail = (book, i) => {
-    // console.log(book.volumeInfo.imageLinks, i);
     if (book.volumeInfo.imageLinks) {
       return book.volumeInfo.imageLinks.thumbnail;
     } else {
@@ -19,17 +18,30 @@ const BookCardList = ({ bookData }) => {
     }
   };
 
+  const fixAuthors = (book) => {
+    if (
+      book.volumeInfo.hasOwnProperty("authors") &&
+      book.volumeInfo.authors.length >= 2
+    ) {
+      return book.volumeInfo.authors.join(", ");
+    } else {
+      return book.volumeInfo.authors;
+    }
+  };
+
   return (
     <div className={styles.container}>
       {bookData &&
+        !errorStatus &&
         bookData.map((book, i) => {
           const bookImage = fixThumbnail(book, i);
+          const bookAuthors = fixAuthors(book);
           return (
             <div key={book.etag}>
               <BookCard
                 key={book.id}
                 title={book.volumeInfo.title}
-                author={book.volumeInfo.authors}
+                author={bookAuthors}
                 pages={book.volumeInfo.pageCount}
                 description={book.volumeInfo.description}
                 image={bookImage}
