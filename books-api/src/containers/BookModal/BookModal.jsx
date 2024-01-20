@@ -20,6 +20,9 @@ const BookModal = () => {
   }, [modalData, isModalOpen]);
 
   const fixThumbnail = (book) => {
+    if (!modalData) {
+      return " ";
+    }
     if (book.volumeInfo.imageLinks) {
       console.log(book.volumeInfo.imageLinks.thumbnail);
       return book.volumeInfo.imageLinks.thumbnail;
