@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
+import styles from "./ModalCard.module.scss";
 
 const ModalCard = ({
   title,
@@ -17,13 +18,15 @@ const ModalCard = ({
   };
 
   return (
-    <article>
+    <article className={styles.modalcard}>
+      <button className={styles.closebutton} onClick={handleClick}>
+        Close
+      </button>
       <img src={image} alt="No Image Available"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
       <p>Page Count: {pages}</p>
       <p>Description: {description}</p>
-      <button onClick={handleClick}>Close</button>
     </article>
   );
 };

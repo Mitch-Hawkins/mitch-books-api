@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "./PageSelector.module.scss";
 
 const PageSelector = ({
   pageNumber,
@@ -40,11 +41,11 @@ const PageSelector = ({
   }, [pageNumber]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <button disabled={decrementDisabled} onClick={handleDecrement}>
         Previous Page
       </button>
-      <p>{pageNumber}</p>
+      <p>Page: {pageNumber}</p>
       <button disabled={incrementDisabled} onClick={handleIncrement}>
         Next Page
       </button>

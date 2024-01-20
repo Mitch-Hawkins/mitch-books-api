@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
 import { useState, useEffect, useRef } from "react";
 import ModalCard from "../../components/ModalCard/ModalCard";
+import styles from "./BookModal.module.scss";
 
 const BookModal = () => {
   const { modalData, setModalData, isModalOpen, setIsModalOpen } =
@@ -35,7 +36,7 @@ const BookModal = () => {
 
   return (
     <>
-      <dialog ref={modalRef}>
+      <dialog className={styles.modalcontainer} ref={modalRef}>
         {isModalOpen && (
           <ModalCard
             key={modalData.id}

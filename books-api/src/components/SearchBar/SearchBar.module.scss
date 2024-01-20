@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.textbar {
+  width: 60vw;
+  height: 50px;
+  font-size: 24px;
+}
+
+.button {
+  height: 54px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
