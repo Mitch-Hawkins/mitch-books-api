@@ -11,7 +11,6 @@ const BookCardList = ({ bookData }) => {
   }, [modalData]);
 
   const fixThumbnail = (book, i) => {
-    // console.log(book.volumeInfo.imageLinks, i);
     if (book.volumeInfo.imageLinks) {
       return book.volumeInfo.imageLinks.thumbnail;
     } else {
@@ -22,6 +21,7 @@ const BookCardList = ({ bookData }) => {
   return (
     <div className={styles.container}>
       {bookData &&
+        !errorStatus &&
         bookData.map((book, i) => {
           const bookImage = fixThumbnail(book, i);
           return (
