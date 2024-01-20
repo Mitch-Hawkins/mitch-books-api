@@ -6,6 +6,8 @@ import BookCardList from "./containers/BookCardList/BookCardList";
 import ModalContextProvider from "./context/ModalContextProvider";
 import BookModal from "./containers/BookModal/BookModal";
 import PageSelector from "./components/PageSelector/PageSelector";
+import HeadingContainer from "./containers/HeadingContainer/HeadingContainer";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 function App() {
   const [bookData, setBookData] = useState(null);
@@ -49,9 +51,16 @@ function App() {
     <>
       {/* Grid Background */}
       <ModalContextProvider>
-        <Header />
-        <SearchBar setSearchTerm={setSearchTerm} />
-        {loading && <p>Loading...</p>}
+        <HeadingContainer setSearchTerm={setSearchTerm} />
+        {bookData && (
+          <PageSelector
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            bookData={bookData}
+            resultsPerPage={resultsPerPage}
+          />
+        )}
+        {loading && <LoadingSpinner />}
         {!loading && (
           <BookCardList bookData={bookData} searchTerm={searchTerm} />
         )}

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
+import styles from "./BookCard.module.scss";
 
 const BookCard = ({
   title,
@@ -20,7 +21,7 @@ const BookCard = ({
   };
 
   return (
-    <article>
+    <article className={styles.card}>
       <img src={image} alt="No Image Avaialble"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>

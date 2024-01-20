@@ -1,7 +1,9 @@
+import styles from "./Header.module.scss";
+
 const Header = () => {
   return (
     <div>
-      <h1>Book Me Up!</h1>
+      <h1 className={styles.header}>Book Me Up!</h1>
     </div>
   );
 };

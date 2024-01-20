@@ -1,6 +1,7 @@
 import BookCard from "../../components/BookCard/BookCard";
 import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContextProvider";
+import styles from "./BookCardList.module.scss";
 
 const BookCardList = ({ bookData }) => {
   const { modalData, setModalData } = useContext(ModalContext);
@@ -19,7 +20,7 @@ const BookCardList = ({ bookData }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {bookData &&
         bookData.map((book, i) => {
           const bookImage = fixThumbnail(book, i);
