@@ -9,6 +9,7 @@ import PageSelector from "./components/PageSelector/PageSelector";
 import HeadingContainer from "./containers/HeadingContainer/HeadingContainer";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import FooterContainer from "./containers/FooterContainer/FooterContainer";
 
 function App() {
   const [bookData, setBookData] = useState(null);
@@ -74,11 +75,15 @@ function App() {
           />
         )}
         {loading && <LoadingSpinner />}
-        {!loading && !errorStatus && (
-          <BookCardList bookData={bookData} searchTerm={searchTerm} />
+        {!loading && !errorStatus && bookData && (
+          <BookCardList
+            bookData={bookData}
+            searchTerm={searchTerm}
+            errorStatus={errorStatus}
+          />
         )}
         {!loading && errorStatus && <ErrorMessage bookData={bookData} />}
-        {!loading && !errorStatus && bookData && (
+        {!errorStatus && bookData && (
           <PageSelector
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
@@ -86,6 +91,7 @@ function App() {
             resultsPerPage={resultsPerPage}
           />
         )}
+        <FooterContainer />
         <BookModal />
       </ModalContextProvider>
     </>

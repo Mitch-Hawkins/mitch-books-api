@@ -5,12 +5,18 @@ import { useEffect, useState } from "react";
 
 const HeadingContainer = ({ setSearchTerm, searchTerm }) => {
   const [classToAdd, setClassToAdd] = useState(null);
+  const [firstSearchMade, setFirstSearchMade] = useState(false);
 
   useEffect(() => {
     if (searchTerm) {
       setClassToAdd(styles.container);
+      setFirstSearchMade(true);
     } else {
-      setClassToAdd(styles.containerFull);
+      if (firstSearchMade) {
+        setClassToAdd(styles.container);
+      } else {
+        setClassToAdd(styles.containerFull);
+      }
     }
   }, [searchTerm]);
 

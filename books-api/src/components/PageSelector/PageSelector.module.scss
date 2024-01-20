@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  border: 2px solid black;
+  border: 2px solid #9c6644;
   border-radius: 15px;
   width: 600px;
   justify-content: space-between;
@@ -10,4 +10,6 @@
   margin-right: auto;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 30px;
+  background-color: #ede0d4;
 }
