@@ -22,7 +22,7 @@ const BookCard = ({
 
   return (
     <article className={styles.card}>
-      <img src={image} alt="No Image Avaialble"></img>
+      <img src={image} alt="No Image Available"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
       <button onClick={handleClick}>More Info</button>

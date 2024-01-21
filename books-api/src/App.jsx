@@ -21,6 +21,8 @@ function App() {
 
   const [errorStatus, setErrorStatus] = useState(false);
 
+  const [loadingIcon] = useState("books-api/src/assets/icons8-open-book.gif");
+
   const fetchBookData = async () => {
     const fetchedData = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&startIndex=${
@@ -76,7 +78,7 @@ function App() {
             resultsPerPage={resultsPerPage}
           />
         )}
-        {loading && <LoadingSpinner />}
+        {loading && <LoadingSpinner loadingIcon={loadingIcon} />}
         {!loading && !errorStatus && bookData && (
           <BookCardList
             bookData={bookData}

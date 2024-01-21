@@ -1,9 +1,15 @@
 import styles from "./LoadingSpinner.module.scss";
+import icon from "../../assets/icons8-open-book.gif";
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ loadingIcon }) => {
   return (
     <div className={styles.container}>
-      <p>Loading...</p>
+      <div className={styles.containerOther}>
+        <p>
+          Loading...
+          <img src={icon} />
+        </p>
+      </div>
     </div>
   );
 };

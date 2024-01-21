@@ -2,7 +2,8 @@
   display: flex;
   border: 2px solid #9c6644;
   border-radius: 15px;
-  width: 600px;
+  max-width: 600px;
+  width: 60%;
   justify-content: space-between;
   align-items: center;
   height: 40px;
@@ -12,4 +13,20 @@
   padding-right: 10px;
   margin-bottom: 30px;
   background-color: #ede0d4;
+}
+
+.container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  background-color: #9c6644;
+  color: white;
+  &:disabled {
+    color: darkgray;
+  }
+}
+
+.container p {
+  padding-right: 10px;
 }

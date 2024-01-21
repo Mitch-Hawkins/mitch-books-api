@@ -11,9 +11,26 @@
   box-shadow: 10px 10px 10px rgba(128, 128, 128, 0.253);
   gap: 15px;
   background-color: #ede0d4;
+  &:hover {
+    box-shadow: 10px 10px 10px #9c664465;
+  }
 }
 
 .card img {
   height: 200px;
   width: 133px;
+  text-align: center;
+}
+
+.card h4 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.card button {
+  width: 80px;
+  height: 28px;
+  font-size: 16px;
+  background-color: #9c6644;
+  color: white;
 }

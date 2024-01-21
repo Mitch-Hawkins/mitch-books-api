@@ -3,8 +3,29 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  color: darkgray;
-  font-size: 24px;
+  color: black;
+  // border: 2px solid black;
+  // width: 400px;
+  font-size: 30px;
   padding-top: 10px;
   height: 4790px;
+}
+
+.containerOther {
+  display: flex;
+  // border: 2px solid black;
+  width: 400px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  // & p {
+  //   transform: translateY(100px);
+  // }
+}
+
+.container img {
+  width: min-content;
+  height: max-content;
+  mix-blend-mode: multiply;
+  transform: translateY(10px);
 }

@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Spectral&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap");
+
 * {
   padding: 0px;
   margin: 0px;
@@ -5,4 +9,13 @@
 
 body {
   background-color: #e6ccb2;
+  & h1 {
+    font-family: "Spectral", serif;
+  }
+  & p {
+    font-family: "Noto Serif JP", serif;
+  }
+  & h4 {
+    font-family: "Bree Serif", serif;
+  }
 }
