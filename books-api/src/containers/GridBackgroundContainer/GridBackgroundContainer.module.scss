@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  white-space: wrap;
+  padding: 60px 0;
+  gap: 40px;
+  //   border: 2px solid red;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  opacity: 30%;
+  z-index: -1;
+}
