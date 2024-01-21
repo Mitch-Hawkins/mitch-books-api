@@ -1,11 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   white-space: wrap;
-  padding: 60px 0;
+  //   padding: 60px 0;
   gap: 40px;
   //   border: 2px solid red;
   width: 100%;
+  height: 90vh;
+  max-height: 91vh;
   position: absolute;
   overflow: hidden;
   opacity: 30%;
