@@ -11,6 +11,22 @@
   gap: 15px;
 }
 
+.modalcard img {
+  width: 200px;
+}
+
+.description {
+  padding-bottom: 30px;
+}
+
 .closebutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   align-self: flex-end;
+  font-size: 24px;
+  width: 35px;
+  height: 35px;
+  color: white;
+  background-color: black;
 }

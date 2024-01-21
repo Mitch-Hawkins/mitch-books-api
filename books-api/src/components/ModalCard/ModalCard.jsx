@@ -20,13 +20,13 @@ const ModalCard = ({
   return (
     <article className={styles.modalcard}>
       <button className={styles.closebutton} onClick={handleClick}>
-        Close
+        X
       </button>
       <img src={image} alt="No Image Available"></img>
       <h4>{title}</h4>
       <p>Author: {author}</p>
       <p>Page Count: {pages}</p>
-      <p>Description: {description}</p>
+      <p className={styles.description}>Description: {description}</p>
     </article>
   );
 };

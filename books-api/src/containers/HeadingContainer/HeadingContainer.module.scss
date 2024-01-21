@@ -20,9 +20,11 @@
   width: 100vw;
   height: 90vh;
   gap: 40px;
-  background-color: #e6ccb2;
+  // background-color: #e6ccb2;
+  z-index: 10;
 }
 
 .containerFull h1 {
   color: #7f5539;
+  z-index: 10;
 }

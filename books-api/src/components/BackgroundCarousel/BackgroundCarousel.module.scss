@@ -1,0 +1,45 @@
+@keyframes slide {
+  from {
+    transform: translateX(-11895px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-reverse {
+  from {
+    transform: translateX(-3000px);
+  }
+  to {
+    transform: translateX(-14895px);
+  }
+}
+
+@keyframes slide-three {
+  from {
+    transform: translateX(-18895px);
+  }
+  to {
+    transform: translateX(-7000px);
+  }
+}
+
+.container {
+  display: flex;
+  //   border: 2px solid black;
+  animation: 180s slide infinite linear;
+}
+
+.containerTwo {
+  display: flex;
+  //   border: 2px solid black;
+  animation: 180s slide-reverse infinite linear;
+  //   overflow: hidden;
+}
+
+.containerThree {
+  display: flex;
+  //   border: 2px solid black;
+  animation: 180s slide-three infinite linear;
+}

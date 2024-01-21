@@ -10,6 +10,7 @@ import HeadingContainer from "./containers/HeadingContainer/HeadingContainer";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import FooterContainer from "./containers/FooterContainer/FooterContainer";
+import GridBackgroundContainer from "./containers/GridBackgroundContainer/GridBackgroundContainer";
 
 function App() {
   const [bookData, setBookData] = useState(null);
@@ -60,8 +61,9 @@ function App() {
 
   return (
     <>
-      {/* Grid Background */}
       <ModalContextProvider>
+        {/* Grid Background */}
+        <GridBackgroundContainer searchTerm={searchTerm} />
         <HeadingContainer
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
