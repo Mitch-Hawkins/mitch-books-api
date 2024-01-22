@@ -11,6 +11,7 @@ import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import FooterContainer from "./containers/FooterContainer/FooterContainer";
 import GridBackgroundContainer from "./containers/GridBackgroundContainer/GridBackgroundContainer";
+import NoResultsMessage from "./components/NoResultsMessage/NoResultsMessage";
 
 function App() {
   const [bookData, setBookData] = useState(null);
@@ -20,6 +21,7 @@ function App() {
   const [resultsPerPage, setResultsPerPage] = useState(20);
 
   const [errorStatus, setErrorStatus] = useState(false);
+  const [areNoResults, setAreNoResults] = useState(null);
 
   const [loadingIcon] = useState("books-api/src/assets/icons8-open-book.gif");
 
@@ -34,9 +36,15 @@ function App() {
     if (returnedData.hasOwnProperty("error")) {
       console.log(returnedData.hasOwnProperty("error"));
       setErrorStatus(true);
+      setAreNoResults(false);
       return returnedData.error;
+    } else if (returnedData.totalItems == 0) {
+      setAreNoResults(true);
+      setErrorStatus(false);
+      return returnedData.totalItems;
     } else {
       setErrorStatus(false);
+      setAreNoResults(false);
       return returnedData.items;
     }
   };
@@ -70,7 +78,7 @@ function App() {
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
         />
-        {bookData && !errorStatus && (
+        {!errorStatus && !areNoResults && bookData && (
           <PageSelector
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
@@ -79,15 +87,26 @@ function App() {
           />
         )}
         {loading && <LoadingSpinner loadingIcon={loadingIcon} />}
-        {!loading && !errorStatus && bookData && (
+        {/* {console.log(errorStatus)} */}
+        {!loading && !errorStatus && !areNoResults && bookData && (
           <BookCardList
             bookData={bookData}
             searchTerm={searchTerm}
             errorStatus={errorStatus}
           />
         )}
-        {!loading && errorStatus && <ErrorMessage bookData={bookData} />}
-        {!errorStatus && bookData && (
+        {!loading && errorStatus && !areNoResults && (
+          <ErrorMessage bookData={bookData} />
+        )}
+        {!loading && !errorStatus && areNoResults && <NoResultsMessage />}
+        {/* {console.log(
+          !errorStatus && bookData && !areNoResults && <PageSelector />
+        )}
+        {console.log(!errorStatus)}
+        {console.log(bookData)}
+        {console.log(!areNoResults)}
+        {console.log(<PageSelector />)} */}
+        {!errorStatus && !areNoResults && bookData && (
           <PageSelector
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
